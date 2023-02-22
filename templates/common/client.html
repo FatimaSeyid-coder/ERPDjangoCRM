@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %} 
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="">la listes des clients  </h1>
+        
+        
+        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4"> 
+           
+      
+       
+      
+       <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Post</th>
+            <th scope="col">Numero telephone</th>
+            <th scope="col">Email</th>
+            <th scope="col">site web</th>
+            <th scope="col">titre</th>
+            <th scope="col">Étiquette</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for instance in queryset %}
+          <tr>
+            <th scope="row">{{instance.lastname}}</th>
+            <td>{{instance.firstname}}</td>
+            <td>{{instance.post}}</td>
+            <td>{{instance.phone_number}}</td>
+            <td>{{instance.email}}</td>
+            <td>{{instance.siteweb}}</td>
+            <td>{{instance.titre}}</td>
+            <td>{{instance.etiquette}}</td>
+            <td> <a href="{% url 'delete_client' id=instance.id %}"  <i class="fas fa-trash-alt text-danger"></i></a></td> 
+            <td>  <a href="{% url 'update_client' id=instance.id %}"> <i class="fas fa-edit"></i></a></td>
+          </tr>
+          {% endfor  %}
+        </tbody>
+      </table>
+     
+        </div>
+        <a href="{% url 'ajout' %}" class="btn btn-sm btn-primary shadow-sm">ajouter client</a>
+    </div>
+    <!-- /.container-fluid -->
+{% endblock content %}

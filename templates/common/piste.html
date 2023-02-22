@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %} 
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="">la listes des clients en piste </h1>
+       
+        
+        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4"> 
+           
+      
+       
+      
+       <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Numero telephone</th>
+            <th scope="col">Email</th>
+            
+         
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for instance in queryset %}
+          <tr>
+            <th scope="row">{{instance.lastname}}</th>
+            <td>{{instance.firstname}}</td>
+            <td>{{instance.phone_number}}</td>
+            <td>{{instance.email}}</td>
+            <td>  <a href="{% url 'message' firstname=instance.firstname %}"> <i class="fa fa-envelope"> </i><span>voir le message </span></a></td>
+          </tr>
+          {% endfor  %}
+        </tbody>
+      </table>
+      
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+{% endblock content %}
